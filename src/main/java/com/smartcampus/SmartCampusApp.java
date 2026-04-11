@@ -7,6 +7,7 @@ import com.smartcampus.exception.SensorUnavailableExceptionMapper;
 import com.smartcampus.filter.LoggingFilter;
 import com.smartcampus.resource.DiscoveryResource;
 import com.smartcampus.resource.RoomResource;
+import com.smartcampus.resource.SensorResource;
 import jakarta.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -15,6 +16,7 @@ public class SmartCampusApp extends ResourceConfig {
     public SmartCampusApp() {
         register(DiscoveryResource.class);
         register(RoomResource.class);
+        register(SensorResource.class);
         register(LoggingFilter.class);
         register(RoomNotEmptyExceptionMapper.class);
         register(LinkedResourceNotFoundExceptionMapper.class);
