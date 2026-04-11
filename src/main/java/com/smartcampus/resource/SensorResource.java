@@ -1,4 +1,5 @@
 package com.smartcampus.resource;
+
 import com.smartcampus.exception.LinkedResourceNotFoundException;
 import com.smartcampus.model.Sensor;
 import com.smartcampus.store.DataStore;
@@ -13,14 +14,11 @@ public class SensorResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSensors(
-            @QueryParam("type") String type) {
-        List<Sensor> result =
-                new ArrayList<>(DataStore.sensors.values());
+    public Response getSensors(@QueryParam("type") String type) {
+        List<Sensor> result = new ArrayList<>(DataStore.sensors.values());
         if (type != null && !type.isBlank()) {
             result = result.stream()
-                    .filter(s -> s.getType()
-                            .equalsIgnoreCase(type))
+                    .filter(s -> s.getType().equalsIgnoreCase(type))
                     .collect(Collectors.toList());
         }
         return Response.ok(result).build();
@@ -29,21 +27,16 @@ public class SensorResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response createSensor(Sensor sensor,
-                                 @Context UriInfo uriInfo) {
+    public Response createSensor(Sensor sensor, @Context UriInfo uriInfo) {
         if (sensor.getRoomId() == null
-                || !DataStore.rooms.containsKey(
-                sensor.getRoomId())) {
+                || !DataStore.rooms.containsKey(sensor.getRoomId())) {
             throw new LinkedResourceNotFoundException(
-                    "Room with id '"
-                            + sensor.getRoomId()
-                            + "' does not exist.");
+                    "Room with id '" + sensor.getRoomId() + "' does not exist.");
         }
         DataStore.sensors.put(sensor.getId(), sensor);
         DataStore.rooms.get(sensor.getRoomId())
                 .getSensorIds().add(sensor.getId());
-        DataStore.readings.put(sensor.getId(),
-                new ArrayList<>());
+        DataStore.readings.put(sensor.getId(), new ArrayList<>());
         URI loc = uriInfo.getAbsolutePathBuilder()
                 .path(sensor.getId()).build();
         return Response.created(loc).entity(sensor).build();
@@ -52,12 +45,13 @@ public class SensorResource {
     @GET
     @Path("/{sensorId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSensorById(
-            @PathParam("sensorId") String sensorId) {
+    public Response getSensorById(@PathParam("sensorId") String sensorId) {
         Sensor s = DataStore.sensors.get(sensorId);
-        if (s == null) return Response.status(404)
-                .entity(Map.of("error","Sensor not found"))
-                .build();
+        if (s == null) {
+            return Response.status(404)
+                    .entity(Map.of("error", "Sensor not found"))
+                    .build();
+        }
         return Response.ok(s).build();
     }
 
@@ -65,7 +59,7 @@ public class SensorResource {
     public SensorReadingResource getReadingResource(
             @PathParam("sensorId") String sensorId) {
         if (!DataStore.sensors.containsKey(sensorId)) {
-            return null;
+            throw new NotFoundException("Sensor not found: " + sensorId);
         }
         return new SensorReadingResource(sensorId);
     }
