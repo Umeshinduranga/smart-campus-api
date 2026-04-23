@@ -1,6 +1,6 @@
 package com.smartcampus.filter;
-import jakarta.ws.rs.container.*;
-import jakarta.ws.rs.ext.Provider;
+import javax.ws.rs.container.*;
+import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.util.logging.*;
 

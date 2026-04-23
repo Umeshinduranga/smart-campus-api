@@ -2,8 +2,8 @@ package com.smartcampus.resource;
 import com.smartcampus.exception.RoomNotEmptyException;
 import com.smartcampus.model.Room;
 import com.smartcampus.store.DataStore;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.*;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import java.net.URI;
 import java.util.*;
 

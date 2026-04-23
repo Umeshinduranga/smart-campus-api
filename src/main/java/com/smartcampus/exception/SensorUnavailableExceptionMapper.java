@@ -1,6 +1,6 @@
 package com.smartcampus.exception;
-import jakarta.ws.rs.core.*;
-import jakarta.ws.rs.ext.*;
+import javax.ws.rs.core.*;
+import javax.ws.rs.ext.*;
 import java.util.Map;
 
 @Provider

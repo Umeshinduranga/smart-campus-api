@@ -9,8 +9,8 @@ All data is stored in-memory using `ConcurrentHashMap`, no database is used.
 ## Technology Stack
 
 - Java 17
-- JAX-RS (Jakarta RESTful Web Services)
-- Jersey 3.1.3 (JAX-RS implementation)
+- JAX-RS (Java API for RESTful Web Services - javax namespace)
+- Jersey 2.35 (JAX-RS implementation for Tomcat 9 compatibility)
 - Apache Tomcat (web server)
 - Jackson (JSON serialization)
 - Maven (build tool)

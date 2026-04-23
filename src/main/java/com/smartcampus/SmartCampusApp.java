@@ -8,7 +8,7 @@ import com.smartcampus.filter.LoggingFilter;
 import com.smartcampus.resource.DiscoveryResource;
 import com.smartcampus.resource.RoomResource;
 import com.smartcampus.resource.SensorResource;
-import jakarta.ws.rs.ApplicationPath;
+import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
 
 @ApplicationPath("/api/v1")

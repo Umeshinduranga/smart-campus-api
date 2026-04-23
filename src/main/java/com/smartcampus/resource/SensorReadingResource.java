@@ -3,8 +3,8 @@ package com.smartcampus.resource;
 import com.smartcampus.exception.SensorUnavailableException;
 import com.smartcampus.model.SensorReading;
 import com.smartcampus.store.DataStore;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.*;
+import javax.ws.rs.*;
+import javax.ws.rs.core.*;
 import java.util.*;
 
 public class SensorReadingResource {
