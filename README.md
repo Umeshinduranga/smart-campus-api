@@ -209,7 +209,7 @@ The annotation @Consumes(MediaType.APPLICATION_JSON) specifies to JAX-RS that a 
 
 ### Part 3.2 - QueryParam vs PathParam for Filtering
 
-Using Query Parameters (?type=CO2) is the proper way to filter your collection. You are accessing the same collection still, but are using a filter criteria to limit the data you are retrieving from the collection. Using Path Parameters (/sensors/type/CO2) would be saying that type/CO2 is a separate named resource and not the same resource as the collection you are accessing, thus, this would not be using the correct semantics. Query Parameters also allow for easy combination of multiple filters - e.g. ?type=CO2&status=ACTIVE, whereas Path Parameters make it more difficult to combine multiple criteria. The REST conventions are quite clear on this point; Path Parameters identify Resources, and Query Parameters filter or refine Resources.
+Using Query Parameters (?type=CO2) is the proper way to filter our collection. We are accessing the same collection still, but are using a filter criteria to limit the data we are retrieving from the collection. Using Path Parameters (/sensors/type/CO2) would be saying that type/CO2 is a separate named resource and not the same resource as the collection accessing, thus, this would not be using the correct semantics. Query Parameters also allow for easy combination of multiple filters - e.g. ?type=CO2&status=ACTIVE, whereas Path Parameters make it more difficult to combine multiple criteria. The REST conventions are quite clear on this point; Path Parameters identify Resources, and Query Parameters filter or refine Resources.
 
 ### Part 4.1 - Sub-Resource Locator Pattern
 
@@ -225,7 +225,7 @@ There are major security implications with exposing application internal Java st
 
 ### Part 5.5 - Filters vs Manual Logging
 
-A JAX-RS logging filter is much better than putting log statements in all the resource methods. The filter addresses the cross-cutting concern of logging once and will apply to every request and response to the API automatically. If you were to implement, log each method individually, you would run the risk of forgetting to log, creating duplicate code, and mixing logging logic with business logic; this violates the separation of concerns principles. Maintenance is simpler with a filter because you turn it on or off in one place, and all endpoints have consistent logging.
+A JAX-RS logging filter is much better than putting log statements in all the resource methods. The filter addresses the cross-cutting concern of logging once and will apply to every request and response to the API automatically. If we were to implement, log each method individually, we would run the risk of forgetting to log, creating duplicate code, and mixing logging logic with business logic; this violates the separation of concerns principles. Maintenance is simpler with a filter because, turn it on or off in one place, and all endpoints have consistent logging.
 
 ---
 
